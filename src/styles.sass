@@ -1,10 +1,13 @@
+/*Nany colors*/
+$color-pink1: #D60451
+$color-pink2: #A6032F
+$color-pink3: #FFE9C7
+$color-blue1: #11BDF2
+$color-blue2: #1A7BDB
+
+/*Screen Sizing*/ 
 $sm-breackpoint: 576px
 $lg-breackpoint: 960px
-$azul-claro : #11BDF2
-$azul-oscuro: #1A7BDB
-$rosado-claro: #FFE9C7
-$rosado-intermedio: #D60451
-$rosado-oscuro: #A6032F
 
 /*Nany Fonts*/
 @font-face 
@@ -22,7 +25,7 @@ $rosado-oscuro: #A6032F
     body
         font-family: Raleway
 
-    /* Estilos Carousel*/
+    /*Carousel Styles*/
     .container-fluid
         padding-right: 0px !important
         padding-left:  0px !important
@@ -62,54 +65,8 @@ $rosado-oscuro: #A6032F
         vertical-align: middle
         line-height: 0
         border-radius: 20px
-
-    /* Estilos Navbar*/
-    .navbar-toggler
-        margin-right: 5px
-        margin-bottom: 5px
-
-    .navbar-nav .nav-link
-        font-weight: bold
-        width: 70%
-        margin: auto
-    
-    hr
-        margin: 15px 40px
-        background-color: white
-        opacity: 0.50
-
-    #img-logo
-        height: 40px
-        margin-left: 5px
-
-    #logo-blanco
-        height: 30px
-        margin-top: 25px
-        margin-left: 37%
-
-    #navbarContent
-        background: linear-gradient(0.31deg, #1A7BDB -2.62%, rgba(255, 255, 255, 0) 37.94%,rgba(255, 255, 255, 0) 49.13%), #11BDF2
-        background-blend-mode: multiply, normal
-
-    #btn-1
-        border-radius: 40px
-        background-color: $rosado-claro
-        border-color: $rosado-claro
-        color: $rosado-intermedio
-
-    #btn-2
-        border-radius: 40px
-        background-color: $rosado-oscuro
-        border-color: $rosado-oscuro
-        color: #FFF
-
-    #btn-3
-        border-radius: 40px
-        background-color: $rosado-intermedio
-        border-color: $rosado-intermedio
-        color: #FFF
-    
-    /* Estilos Main */
+  
+    /*Main Styles*/
     .btn-success
         padding: 0px
 
@@ -126,7 +83,7 @@ $rosado-oscuro: #A6032F
         margin-top: 30px
 
     #div-text
-        background-color: $azul-claro
+        background-color: $color-blue1
         text-align: center
         height: 70px
         color: #FFF
@@ -143,14 +100,14 @@ $rosado-oscuro: #A6032F
     
     #btn-afiliado
         border-radius: 20px
-        background-color: $azul-oscuro
-        border-color: $azul-oscuro
+        background-color: $color-blue2
+        border-color: $color-blue2
         color: #FFF
         width: 110px
         height: 30px
     
     #div-beneficios
-        background-color: $azul-oscuro
+        background-color: $color-blue2
         height: 189px
         color: #FFF
         padding-top: 15px
@@ -170,14 +127,14 @@ $rosado-oscuro: #A6032F
     
     #requisito
         height: 250px
-        background-color: $rosado-intermedio
+        background-color: $color-pink1
         color: #fff
         text-align: center
 
     #btn-requisito
         border-radius: 20px
-        background-color: $azul-oscuro
-        border-color: $azul-oscuro
+        background-color: $color-blue2
+        border-color: $color-blue2
         color: #FFF
         width: 190px
         height: 30px
@@ -191,9 +148,9 @@ $rosado-oscuro: #A6032F
         margin-top: 20px
         margin-bottom: 30px
     
-    /*Estilos Login*/
+    /*Login Styles*/
     .form-contenido
-        background-color: $azul-claro
+        background-color: $color-blue1
         height: 320px
         border-top-left-radius: 40%
         border-top-right-radius: 40%
@@ -207,6 +164,7 @@ $rosado-oscuro: #A6032F
         width: 90%
         margin: auto
         border-radius: 12px
+        background-color: $color-pink3
     
     .form-contenido h5
         margin-top: 25px
@@ -214,7 +172,7 @@ $rosado-oscuro: #A6032F
         padding-left: 22px
 
     .form-links
-        background-color: $azul-claro
+        background-color: $color-blue1
         height: 200px
     
     .form-links a 
@@ -225,13 +183,13 @@ $rosado-oscuro: #A6032F
     
     .form-links h6
         margin-top: 30px
-        padding-left: 20%
+        padding-left: 17%
         color: #FFF
 
     #btn-login
         border-radius: 20px
-        background-color: $azul-oscuro
-        border-color: $azul-oscuro
+        background-color: $color-blue2
+        border-color: $color-blue2
         color: #FFF
         width: 90%
         height: 40px
@@ -245,18 +203,18 @@ $rosado-oscuro: #A6032F
         margin-bottom: 20px
     
     #registro
-        color: $rosado-intermedio
+        color: $color-pink1
         text-decoration: none
         font-size: 15px
-        padding-left: 40%
+        padding-left: 36%
     
-    /*Estilos Register*/
+    /*Register Styles*/
     .info h5
-        color: $rosado-intermedio
-        margin-left: 13%
+        color: $color-pink1
+        margin-left: 9%
     
     .form-contenedor
-        background-color: $azul-claro
+        background-color: $color-blue1
         height: 320px
         border-top-left-radius: 40%
         border-top-right-radius: 40%
@@ -272,14 +230,15 @@ $rosado-oscuro: #A6032F
         text-align: center
     
     .register
-        background-color: $azul-claro
-        height: 800px
+        background-color: $color-blue1
+        height: 980px
         color: #fff
     
     .register select 
         width: 90%
         margin: auto
         border-radius: 12px
+        background-color: $color-pink3
 
     .register h5 
         margin-top: 15px
@@ -288,13 +247,14 @@ $rosado-oscuro: #A6032F
     
     .register h6
         margin-top: 30px
-        padding-left: 25%
+        padding-left: 23%
         color: #FFF
     
     .inp-form
         width: 90%
         margin: auto
         border-radius: 12px
+        background-color: $color-pink3
 
     .chk-form
         margin-bottom: 10px
@@ -302,8 +262,8 @@ $rosado-oscuro: #A6032F
 
     #btn-registro
         border-radius: 20px
-        background-color: $azul-oscuro
-        border-color: $azul-oscuro
+        background-color: $color-blue2
+        border-color: $color-blue2
         color: #FFF
         width: 60%
         height: 40px
