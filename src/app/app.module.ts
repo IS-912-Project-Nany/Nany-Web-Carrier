@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RequisitosComponent } from './requisitos/requisitos.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     FooterComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    RequisitosComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
