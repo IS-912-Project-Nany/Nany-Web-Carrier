@@ -1,13 +1,9 @@
 /*Nany colors*/
-$azul-claro : #11BDF2
-$azul-oscuro: #1A7BDB
-$rosado-claro: #FFE9C7
-$rosado-intermedio: #D60451
-$rosado-oscuro: #A6032F
-
-/*Screen Sizing*/ 
-$sm-breackpoint: 576px
-$lg-breackpoint: 960px
+$color-pink1: #D60451
+$color-pink2: #A6032F
+$color-pink3: #FFE9C7
+$color-blue1: #11BDF2
+$color-blue2: #1A7BDB
 
 .navbar-toggler
     margin-right: 5px
@@ -17,6 +13,9 @@ $lg-breackpoint: 960px
     font-weight: bold
     width: 70%
     margin: auto
+
+.btn-loggin
+    border-radius: 40px
 
 hr
     margin: 15px 40px
@@ -31,22 +30,58 @@ hr
     height: 30px
     margin-top: 25px
     margin-left: 37%
-    
-#navbarContent
+
+#logoNavbar
+    height: auto
+    margin-top: 25px
+    margin-left: auto
+    width: 30%
+    margin-right: auto
+    display: flex
+
+#noLoggedDropdown
     background: linear-gradient(0.31deg, #1A7BDB -2.62%, rgba(255, 255, 255, 0) 37.94%,rgba(255, 255, 255, 0) 49.13%), #11BDF2
     background-blend-mode: multiply, normal
+
 #btn-1
     border-radius: 40px
-    background-color: $rosado-claro
-    border-color: $rosado-claro
-    color: $rosado-intermedio
+    background-color: $color-pink3
+    border-color: $color-pink3
+    color: $color-pink1
+
 #btn-2
     border-radius: 40px
-    background-color: $rosado-oscuro
-    border-color: $rosado-oscuro
+    background-color: $color-pink2
+    border-color: $color-pink2
     color: #FFF
+
 #btn-3
     border-radius: 40px
-    background-color: $rosado-intermedio
-    border-color: $rosado-intermedio
+    background-color: $color-pink1
+    border-color: $color-pink1
     color: #FFF
+
+#btnLogged1
+    background-color: $color-pink3
+    border-color: $color-pink3
+    color: $color-pink1
+
+#btnLogged2
+    background-color: $color-pink2
+    border-color: $color-pink2
+    color: #FFF
+
+#btnLogged3
+    background-color: #8A8282
+    border-color: #8A8282
+    color: #FFF
+
+#LoggedDropdown
+    background: linear-gradient(0.31deg, #1A7BDB -2.62%, rgba(255, 255, 255, 0) 37.94%,rgba(255, 255, 255, 0) 49.13%), #11BDF2
+    background-blend-mode: multiply, normal
+
+#fa-his
+    margin-right: 2%
+
+.icon-user
+    margin-right: 2%
