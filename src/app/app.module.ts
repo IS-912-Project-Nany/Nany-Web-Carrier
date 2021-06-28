@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RequisitosComponent } from './requisitos/requisitos.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { DetalleOrdenComponent } from './detalle-orden/detalle-orden.component';
+import { HistorialOrdenesComponent } from './historial-ordenes/historial-ordenes.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HomepageComponent } from './homepage/homepage.component';
     RegisterComponent,
     NavbarComponent,
     RequisitosComponent,
-    HomepageComponent
+    HomepageComponent,
+    DetalleOrdenComponent,
+    HistorialOrdenesComponent
   ],
   imports: [
     BrowserModule,
