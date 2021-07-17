@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <img src="../assets/img/Logo-Carrier.png" id="img-logo">
+      <img src="../assets/img/Logo-Carrier.png" id="img-logo" routerLink="/">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,13 +12,13 @@
             <hr>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link btn btn-light" id="btn-1">Aplica</button>
+            <button type="button" class="nav-link btn btn-light" id="btn-1" routerLink="/Requisitos">Aplica</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link btn btn-light mt-3" id="btn-2">Iniciar Sesion</button>
+            <button type="button" class="nav-link btn btn-light mt-3" id="btn-2" routerLink="/Inicio-sesion">Iniciar Sesion</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link btn btn-light mt-3 mb-3" id="btn-3">Registrate</button>
+            <button type="button" class="nav-link btn btn-light mt-3 mb-3" id="btn-3" routerLink="/Registro">Registrate</button>
           </li>
         </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="LoggedDropdown">
@@ -32,7 +32,7 @@
               | Juan Martinez</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="nav-link btn btn-loggin mt-3" id="btnLogged2">
+            <button type="button" class="nav-link btn btn-loggin mt-3" id="btnLogged2" routerLink="/Historial-orden">
               <fa-icon class="fa-dropdown" [icon]="faSignOutAlt" id="fa-his"></fa-icon>
               | Historial de órdenes</button>
           </li>

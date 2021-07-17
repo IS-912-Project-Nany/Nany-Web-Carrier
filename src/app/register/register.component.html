@@ -1,8 +1,8 @@
 <div class="container-fluid">
-    <img src="../assets/img/Logo-Carrier.png" id="logo">
+    <img src="../assets/img/Logo-Carrier.png" id="logo" routerLink="/">
     <div class="info">
         <h5>¿Quieres ser parte de nany?</h5>
-        <button type="button" class="btn btn-success" id="btn-registro">Lee los requisitos</button>
+        <button type="button" class="btn btn-success" id="btn-registro" routerLink="/Requisitos">Lee los requisitos</button>
     </div>
     <form class="needs-validation" novalidate [formGroup]="formRegister">
         <div class="form-contenedor pb-1">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-links register">
+        <div class="register">
             <div>
                 <h5>Contraseña</h5>
                 <input type="password" name="password" autocomplete="on" class="form-control inp-form"
@@ -147,17 +147,23 @@
                     <label class="form-check-label" for="mobileDataFalse">No</label>
                 </div>
             </div>
-            <h5>Nivel de experiencia</h5>
-            <select class="form-select" formControlName="experience" required>
-                <option disabled selected>Seleccione</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+            <div  class="pt-2">
+                <h5>Nivel de experiencia</h5>
+                <select class="form-select" formControlName="experience" required
+                [ngClass]="{'is-invalid': experience.invalid && (experience.dirty || experience.touched), 'is-valid': experience.valid}">
+                    <option disabled selected>Seleccione</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="invalid-feedback register-feedback" *ngIf="experience.errors">
+                    <span *ngIf="experience.errors.required">Este campo no puede quedar vacío</span>
+                </div>
+            </div>
             <button [disabled]="formRegister.invalid || (password.value != confirmPassword.value)" type="button"
-                class="btn btn-success" id="btn-login" (click)="register()">Registrarse</button>
+                class="btn btn-success mt-5" id="btn-login" (click)="register()">Registrarse</button>
             <h6>¿Ya tienes una cuenta?</h6>
-            <a href="" id="registro">Inicia sesión</a>
+            <a routerLink="/Inicio-sesion" id="registro">Inicia sesión</a>
         </div>
     </form>
 </div>
