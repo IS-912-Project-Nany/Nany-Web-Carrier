@@ -74,4 +74,8 @@ export class RegisterComponent implements OnInit {
   get dni() {
     return this.formRegister.get('dni');
   }
+
+  get experience() {
+    return this.formRegister.get('experience');
+  }
 }
