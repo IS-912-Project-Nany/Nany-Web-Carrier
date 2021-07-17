@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { app_routing } from './app.routers';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,8 +33,7 @@ import { HistorialOrdenesComponent } from './historial-ordenes/historial-ordenes
     FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    app_routing
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
