@@ -1,18 +1,18 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngFor="let item of detalleOrden">
     <h5 class="text2">Detalle de Orden</h5>
     <div class="img-product">
-        <img src="../../assets/img/zapatillas.png" alt="">
+        <img src="../../assets/img/{{item.imgOrden}}" alt="...">
     </div>
     <div class="details">
-        <h1>Tenis de colores </h1>
-        <p>Zapato marca Nike, color: Rojo, numero EUR38, USA 8</p>
+        <h1>{{item.nombreArticulo}}</h1>
+        <p>{{item.descripcion}}</p>
         <hr>
-        <h5>Cantidad: 1 unidad</h5>
-        <h5>Precio: Lps. 1,000</h5>
-        <h5>Categoria: Zapatos</h5>
-        <h5>Empresa: Payless</h5>
+        <h5>Cantidad: {{item.cantidad}}</h5>
+        <h5>Precio: {{item.precio}}</h5>
+        <h5>Categoria: {{item.categoria}}</h5>
+        <h5>Empresa: {{item.empresa}}</h5>
         <button type="button" class="btn btn-success" id="btn-taken" routerLink="/Home">Tomar orden</button>
     </div>
 </div>
