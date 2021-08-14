@@ -14,6 +14,8 @@ import { RequisitosComponent } from './requisitos/requisitos.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DetalleOrdenComponent } from './detalle-orden/detalle-orden.component';
 import { HistorialOrdenesComponent } from './historial-ordenes/historial-ordenes.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,10 @@ import { HistorialOrdenesComponent } from './historial-ordenes/historial-ordenes
     FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
