@@ -10,31 +10,32 @@
             <div>
                 <h5>Nombre</h5>
                 <input type="text" class="form-control inp-form"
-                    [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched), 'is-valid': name.valid}"
-                    formControlName="name" required>
-                <div class="invalid-feedback register-feedback" *ngIf="name.errors">
-                    <span *ngIf="name.errors.maxlength">Nombre máximo de 30 caracteres</span>
-                    <span *ngIf="name.errors.required">Este campo no puede quedar vacío</span>
+                    [ngClass]="{'is-invalid': nombre.invalid && (nombre.dirty || nombre.touched), 'is-valid': nombre.valid}"
+                    formControlName="nombre" required>
+                <div class="invalid-feedback register-feedback" *ngIf="nombre.errors">
+                    <span *ngIf="nombre.errors.maxlength">Nombre máximo de 30 caracteres</span>
+                    <span *ngIf="nombre.errors.required">Este campo no puede quedar vacío</span>
                 </div>
             </div>
             <div>
                 <h5>Apellido</h5>
                 <input type="text" class="form-control inp-form"
-                    [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched), 'is-valid': lastName.valid}"
-                    formControlName="lastName" required>
-                <div class="invalid-feedback register-feedback" *ngIf="lastName.errors">
-                    <span *ngIf="lastName.errors.maxlength">Apellido máximo de 30 caracteres</span>
-                    <span *ngIf="lastName.errors.required">Este campo no puede quedar vacío</span>
+                    [ngClass]="{'is-invalid': apellido.invalid && (apellido.dirty || apellido.touched), 'is-valid': apellido.valid}"
+                    formControlName="apellido" required>
+                <div class="invalid-feedback register-feedback" *ngIf="apellido.errors">
+                    <span *ngIf="apellido.errors.maxlength">Apellido máximo de 30 caracteres</span>
+                    <span *ngIf="apellido.errors.required">Este campo no puede quedar vacío</span>
                 </div>
             </div>
             <div>
                 <h5>Correo electrónico</h5>
                 <input type="email" class="form-control inp-form"
-                    [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched), 'is-valid': email.valid}"
-                    placeholder="ejemplo@gmail.com" formControlName="email" required>
-                <div class="invalid-feedback register-feedback" *ngIf="email.errors">
-                    <span *ngIf="email.errors.pattern">Correo Inválido</span>
-                    <span *ngIf="email.errors.required">Este campo no puede quedar vacío</span>
+                    [ngClass]="{'is-invalid': correo.invalid && (correo.dirty || correo.touched), 'is-valid': correo.valid}"
+                    placeholder="ejemplo@gmail.com" formControlName="correo" required>
+                <div class="invalid-feedback register-feedback" *ngIf="correo.errors">
+                    <span *ngIf="correo.errors.pattern">Correo Inválido</span>
+                    <span *ngIf="correo.errors.required && (responseRegistro.code != 0)">Este campo no puede quedar vacío</span>
+                    <span *ngIf="responseRegistro.code == 0">{{responseRegistro.message}}</span>
                 </div>
             </div>
         </div>
@@ -53,33 +54,31 @@
             <div class="pt-2">
                 <h5>Confirmar Contraseña</h5>
                 <input type="password" name="confirmPassword" autocomplete="on" class="form-control inp-form"
-                    [ngClass]="{'is-invalid': (confirmPassword.value != password.value && confirmPassword.touched), 'is-valid': (confirmPassword.value == password.value) && confirmPassword.touched}"
-                    [formControl]="confirmPassword" required>
+                    [ngClass]="{'is-invalid': (confirmarPassword.value != password.value && confirmarPassword.touched), 'is-valid': (confirmarPassword.value == password.value) && confirmarPassword.touched}"
+                    [formControl]="confirmarPassword" required>
                 <div class="invalid-feedback register-feedback">
-                    <span *ngIf="confirmPassword.value != password.value">Contraseña no coinciden.</span>
+                    <span *ngIf="confirmarPassword.value != password.value">Contraseña no coinciden.</span>
                 </div>
             </div>
             <div class="pt-2">
                 <h5>Ciudad</h5>
                 <select class="form-select"
-                    [ngClass]="{'is-invalid': city.invalid && (city.dirty || city.touched), 'is-valid': city.valid}"
-                    formControlName="city" required>
+                    [ngClass]="{'is-invalid': ciudad.invalid && (ciudad.dirty || ciudad.touched), 'is-valid': ciudad.valid}"
+                    formControlName="ciudad" required>
                     <option disabled selected>Seleccione</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad.idCiudad">{{ciudad.ciudad}}</option>
                 </select>
-                <div class="invalid-feedback register-feedback" *ngIf="city.errors">
-                    <span *ngIf="city.errors.required">Este campo no puede quedar vacío</span>
+                <div class="invalid-feedback register-feedback" *ngIf="ciudad.errors">
+                    <span *ngIf="ciudad.errors.required">Este campo no puede quedar vacío</span>
                 </div>
             </div>
             <div class="pt-2">
                 <h5>Fecha de nacimiento</h5>
                 <input type="date" class="form-control inp-form"
-                    [ngClass]="{'is-invalid': birthdayDate.invalid && (birthdayDate.dirty || birthdayDate.touched), 'is-valid': birthdayDate.valid}"
-                    formControlName="birthdayDate" required>
-                <div class="invalid-feedback register-feedback" *ngIf="birthdayDate.errors">
-                    <span *ngIf="birthdayDate.errors.required">Este campo no puede quedar vacío</span>
+                    [ngClass]="{'is-invalid': fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched), 'is-valid': fechaNacimiento.valid}"
+                    formControlName="fechaNacimiento" required>
+                <div class="invalid-feedback register-feedback" *ngIf="fechaNacimiento.errors">
+                    <span *ngIf="fechaNacimiento.errors.required">Este campo no puede quedar vacío</span>
                 </div>
             </div>
             <div class="pt-2">
@@ -98,70 +97,71 @@
             <h5>Género</h5>
             <div class="chk-form mt-2">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=true formControlName="gender" name="gender"
-                        id="genderMale" required>
-                    <label class="form-check-label" for="genderMale">Masculino</label>
+                    <input class="form-check-input" type="radio" [value]=true formControlName="genero" name="genero"
+                        id="generoMale" required>
+                    <label class="form-check-label" for="generoMale">Masculino</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=false formControlName="gender" name="gender"
-                        id="genderFemale" required>
-                    <label class="form-check-label" for="genderFemale">Femenino</label>
+                    <input class="form-check-input" type="radio" [value]=false formControlName="genero" name="genero"
+                        id="generoFemale" required>
+                    <label class="form-check-label" for="generoFemale">Femenino</label>
                 </div>
             </div>
             <h5>¿Posee motocicleta?</h5>
             <div class="chk-form">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=true formControlName="motorcycle"
-                        name="motorcycle" id="motorcycleTrue" required>
-                    <label class="form-check-label" for="motorcycleTrue">Si</label>
+                    <input class="form-check-input" type="radio" [value]=true formControlName="motocicleta"
+                        name="motocicleta" id="motocicletaTrue" required>
+                    <label class="form-check-label" for="motocicletaTrue">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=false formControlName="motorcycle"
-                        name="motorcycle" id="motorcycleFalse" required>
-                    <label class="form-check-label" for="motorcycleFalse">No</label>
+                    <input class="form-check-input" type="radio" [value]=false formControlName="motocicleta"
+                        name="motocicleta" id="motocicletaFalse" required>
+                    <label class="form-check-label" for="motocicletaFalse">No</label>
                 </div>
             </div>
             <h5>¿Posee licencia de conducir vigente?</h5>
             <div class="chk-form">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=true formControlName="license" name="license"
-                        id="lincenseTrue" required>
-                    <label class="form-check-label" for="lincenseTrue">Si</label>
+                    <input class="form-check-input" type="radio" [value]=true formControlName="licencia" name="licencia"
+                        id="lincenciaTrue" required>
+                    <label class="form-check-label" for="lincenciaTrue">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=false formControlName="license" name="license"
-                        id="lincenseFalse" required>
-                    <label class="form-check-label" for="lincenseFalse">No</label>
+                    <input class="form-check-input" type="radio" [value]=false formControlName="licencia" name="licencia"
+                        id="lincenciaFalse" required>
+                    <label class="form-check-label" for="lincenciaFalse">No</label>
                 </div>
             </div>
             <h5>¿Posee celular con datos moviles?</h5>
             <div class="chk-form">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=true formControlName="mobileData"
-                        name="mobileData" id="mobileDataTrue" required>
-                    <label class="form-check-label" for="mobileDataTrue">Si</label>
+                    <input class="form-check-input" type="radio" [value]=true formControlName="datosMoviles"
+                        name="datosMoviles" id="datosMovilesTrue" required>
+                    <label class="form-check-label" for="datosMovilesTrue">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" [value]=false formControlName="mobileData"
-                        name="mobileData" id="mobileDataFalse" required>
-                    <label class="form-check-label" for="mobileDataFalse">No</label>
+                    <input class="form-check-input" type="radio" [value]=false formControlName="datosMoviles"
+                        name="datosMoviles" id="datosMovilesFalse" required>
+                    <label class="form-check-label" for="datosMovilesFalse">No</label>
                 </div>
             </div>
             <div  class="pt-2">
                 <h5>Nivel de experiencia</h5>
-                <select class="form-select" formControlName="experience" required
-                [ngClass]="{'is-invalid': experience.invalid && (experience.dirty || experience.touched), 'is-valid': experience.valid}">
+                <select class="form-select" formControlName="experiencia" required
+                [ngClass]="{'is-invalid': experiencia.invalid && (experiencia.dirty || experiencia.touched), 'is-valid': experiencia.valid}">
                     <option disabled selected>Seleccione</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option *ngFor="let experiencia of experiencias" [ngValue]="experiencia.idExperiencia">{{experiencia.experiencia}}</option>
                 </select>
-                <div class="invalid-feedback register-feedback" *ngIf="experience.errors">
-                    <span *ngIf="experience.errors.required">Este campo no puede quedar vacío</span>
+                <div class="invalid-feedback register-feedback" *ngIf="experiencia.errors">
+                    <span *ngIf="experiencia.errors.required">Este campo no puede quedar vacío</span>
                 </div>
             </div>
-            <button [disabled]="formRegister.invalid || (password.value != confirmPassword.value)" type="button"
-                class="btn btn-success mt-5" id="btn-login" (click)="register()">Registrarse</button>
+            <button [disabled]="formRegister.invalid || (password.value != confirmarPassword.value)" type="button"
+                class="btn btn-success mt-5" id="btn-login" (click)="registrar()">Registrarse</button>
+            <div class="registro-add-response">
+                <span *ngIf="responseRegistro.code == 0">{{responseRegistro.message}}</span>
+            </div>
             <h6>¿Ya tienes una cuenta?</h6>
             <a routerLink="/Inicio-sesion" id="registro">Inicia sesión</a>
         </div>

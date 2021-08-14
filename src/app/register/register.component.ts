@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { UsuariosService } from '../services/usuarios.service';
+import { CiudadesService } from '../services/ciudades.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +16,12 @@ export class RegisterComponent implements OnInit {
   dniPattern = /[0-1][0-9][0-2][0-9]-[1,2][0,9][0-9][0-9]-[0-9]{5}/g;
 
   formRegister = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    lastName: new FormControl('', [
+    nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    apellido: new FormControl('', [
       Validators.required,
       Validators.maxLength(30),
     ]),
-    email: new FormControl('', [
+    correo: new FormControl('', [
       Validators.required,
       Validators.pattern(this.emailPattern),
     ]),
@@ -25,57 +29,166 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.pattern(this.passwordPattern),
     ]),
-    city: new FormControl('', [Validators.required]),
-    birthdayDate: new FormControl('', [Validators.required]),
+    ciudad: new FormControl('', [Validators.required]),
+    fechaNacimiento: new FormControl('', [Validators.required]),
     dni: new FormControl('', [
       Validators.required,
       Validators.pattern(this.dniPattern),
     ]),
-    gender: new FormControl('', [Validators.required]),
-    motorcycle: new FormControl('', [Validators.required]),
-    license: new FormControl('', [Validators.required]),
-    mobileData: new FormControl('', [Validators.required]),
-    experience: new FormControl('', [Validators.required]),
+    genero: new FormControl('', [Validators.required]),
+    motocicleta: new FormControl('', [Validators.required]),
+    licencia: new FormControl('', [Validators.required]),
+    datosMoviles: new FormControl('', [Validators.required]),
+    experiencia: new FormControl('', [Validators.required]),
   });
-  confirmPassword = new FormControl('',[Validators.required]);
+  confirmarPassword = new FormControl('',[Validators.required]);
+  responseRegistro: any = '';
+  ciudades: any = []
+  experiencias = [
+    { idExperiencia: 1, experiencia:"Un año"},
+    { idExperiencia: 2, experiencia:"Dos años"},
+    { idExperiencia: 3, experiencia:"Tres años"},
+    { idExperiencia: 4, experiencia:"No tengo experiencia"},
+  ]
 
-  constructor() {}
+  constructor(
+    private usuariosService: UsuariosService,
+    private ciudadesService: CiudadesService,
+    private cookiesService: CookieService
+  ) {}
 
-  ngOnInit(): void {}
-
-  register() {
-    console.log(this.formRegister);
+  ngOnInit(): void {
+    this.ciudadesService.obtenerCiudades().subscribe(
+      result=>{
+        this.ciudades = result;
+      },
+      error=>{
+        console.log(error);
+      }
+    )
   }
 
-  get name() {
-    return this.formRegister.get('name');
+  registrar() {
+    let ciudadSeleccionada: any = {};
+    this.ciudades.forEach(ciudad => {
+      if(this.formRegister.value.ciudad == ciudad.idCiudad){
+        ciudadSeleccionada.idCiudad = this.formRegister.value.ciudad;
+        ciudadSeleccionada.ciudad = ciudad.ciudad;
+      }
+    });
+
+    let experienciaSeleccionada: any = {};
+    this.experiencias.forEach(exp => {
+      if(this.formRegister.value.experiencia == exp.idExperiencia){
+        experienciaSeleccionada.idExperiencia = this.formRegister.value.experiencia;
+        experienciaSeleccionada.experiencia = exp.experiencia;
+      }
+    });
+
+    let nuevoMotorista = {
+      nombre: this.formRegister.value.nombre,
+      apellido: this.formRegister.value.apellido,
+      correo: this.formRegister.value.correo,
+      password: this.formRegister.value.password,
+      ciudad: ciudadSeleccionada,
+      fechaNacimiento: this.formRegister.value.fechaNacimiento,
+      genero: this.formRegister.value.genero,
+      tipoUsuario: { 
+        motoristaInfo:{
+          dni: this.formRegister.value.dni,
+          motocicleta: this.formRegister.value.motocicleta,
+          licencia: this.formRegister.value.licencia,
+          datosMoviles: this.formRegister.value.datosMoviles,
+          experiencia: experienciaSeleccionada,
+          estadoAdmision: false
+        },
+        idUsuario: 2, 
+        tipo: "motorista"
+      },
+      ordenes: []
+    }
+    console.log("Se registrara el motorista:", nuevoMotorista);
+
+    this.usuariosService.registrar(nuevoMotorista).subscribe(
+      result=>{
+        if (result.code == 0) {
+          this.responseRegistro = result;
+          this.correo.setValue('');
+        } else {
+          const dateNow = new Date();
+          dateNow.setMinutes(dateNow.getMinutes() + 60);
+          this.cookiesService.set('nanyUsuarioId', result.usuario._id, dateNow);
+          this.cookiesService.set(
+            'nanyUsuarioNombre',
+            result.usuario.nombre,
+            dateNow
+          );
+          this.cookiesService.set(
+            'nanyUsuarioApellido',
+            result.usuario.apellido,
+            dateNow
+          );
+
+        }
+        console.log(result);
+        Swal.fire({
+          icon: 'success',
+          title: 'Tu registro ha sido exitoso!',
+          text: 'Te avisaremos al correo cuando tu solicitud sea aceptada',
+        });
+
+      },
+      error=>{
+        console.log(error);
+      }
+    )
   }
 
-  get lastName() {
-    return this.formRegister.get('lastName');
+  get nombre() {
+    return this.formRegister.get('nombre');
   }
 
-  get email() {
-    return this.formRegister.get('email');
+  get apellido() {
+    return this.formRegister.get('apellido');
+  }
+
+  get correo() {
+    return this.formRegister.get('correo');
   }
 
   get password() {
     return this.formRegister.get('password');
   }
 
-  get city() {
-    return this.formRegister.get('city');
+  get ciudad() {
+    return this.formRegister.get('ciudad');
   }
 
-  get birthdayDate() {
-    return this.formRegister.get('birthdayDate');
+  get fechaNacimiento() {
+    return this.formRegister.get('fechaNacimiento');
   }
 
   get dni() {
     return this.formRegister.get('dni');
   }
 
-  get experience() {
-    return this.formRegister.get('experience');
+  get genero(){
+    return this.formRegister.get('genero');
+  }
+
+  get datosMoviles(){
+    return this.formRegister.get('datosMoviles');
+  }
+
+  get licencia(){
+    return this.formRegister.get('licencia');
+  }
+
+  get motocicleta(){
+    return this.formRegister.get('motocicleta');
+  }
+
+  get experiencia() {
+    return this.formRegister.get('experiencia');
   }
 }
