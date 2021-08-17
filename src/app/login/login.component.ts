@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           })
         } else {
           console.log('Logeado con exito');
-          this._route.navigate(['/home']);
+          this._route.navigate(['/Home']);
         }
         
       },

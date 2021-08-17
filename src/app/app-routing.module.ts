@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'Inicio-sesion', component: LoginComponent},
   {path: 'Requisitos', component: RequisitosComponent},
   {path: 'Home', component: HomepageComponent},
-  {path: 'Detalle-orden', component: DetalleOrdenComponent},
+  {path: 'Detalle-orden/:_id', component: DetalleOrdenComponent},
   {path: 'Historial-orden', component: HistorialOrdenesComponent},
   {path: '**', pathMatch: 'full', redirectTo: ''},
 ];
