@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <img src="../assets/img/Logo-Carrier.png" id="img-logo" routerLink="/">
+      <img src="../assets/img/Logo-Carrier.png" id="img-logo" routerLink="/Home">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="noLoggedDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="usuario == ''" id="noLoggedDropdown">
           <li class="nav-item">
             <img src="../assets/img/Logo2-Carrier.png" id="logoNavbar"  alt="...">
             <hr>
@@ -21,7 +21,7 @@
             <button type="button" class="nav-link btn btn-light mt-3 mb-3" id="btn-3" routerLink="/Registro">Registrate</button>
           </li>
         </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none" id="LoggedDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="usuario != ''" id="LoggedDropdown">
           <li class="nav-item">
             <img src="../assets/img/Logo2-Carrier.png" id="logoNavbar">
             <hr>
@@ -29,7 +29,7 @@
           <li class="nav-item">
             <button type="button" class="nav-link btn btn-loggin" id="btnLogged1">
               <fa-icon class="fa-dropdown icon-user" [icon]="faUserCircle"></fa-icon>
-              | Juan Martinez</button>
+              | {{usuario.nombre}} {{usuario.apellido}}</button>
           </li>
           <li class="nav-item">
             <button type="button" class="nav-link btn btn-loggin mt-3" id="btnLogged2" routerLink="/Historial-orden">
@@ -38,7 +38,7 @@
           </li>
           <li class="nav-item">
           </li>
-          <button type="button" class="nav-link btn btn-loggin mt-3 mb-3" id="btnLogged3">
+          <button type="button" class="nav-link btn btn-loggin mt-3 mb-3" id="btnLogged3" (click)="logOut()">
             <fa-icon class="fa-dropdown icon-user" [icon]="faClipboardList"></fa-icon>
            | Cerrar Sesión</button>
         </ul>
