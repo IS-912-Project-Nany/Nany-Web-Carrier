@@ -1,20 +1,22 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid" *ngFor="let item of detalleOrden">
+<div class="container-fluid">
     <h5 class="text2">Detalle de Orden</h5>
-    <div class="img-product">
-        <img src="../../assets/img/{{item.imgOrden}}" alt="...">
+    <div *ngFor="let detalle of detalleOrden.detalleProductos">
+        <div class="img-product">
+            <img src="{{detalle.producto.imagen}}" alt="...">
+        </div>
+        <div class="details pb-4">
+            <h1>{{detalle.producto.nombre}}</h1>
+            <p>{{detalle.producto.descripcion}}</p>
+            <hr>
+            <h5>Cantidad: {{detalle.cantidad}}</h5>
+            <h5>Precio unitario: Lps. {{detalle.producto.precio}}</h5>
+            <h5>Categoria: {{detalle.producto.categoria}}</h5>
+            <h5>Empresa: {{detalle.producto.empresa}}</h5>
+        </div>
     </div>
-    <div class="details">
-        <h1>{{item.nombreArticulo}}</h1>
-        <p>{{item.descripcion}}</p>
-        <hr>
-        <h5>Cantidad: {{item.cantidad}}</h5>
-        <h5>Precio: {{item.precio}}</h5>
-        <h5>Categoria: {{item.categoria}}</h5>
-        <h5>Empresa: {{item.empresa}}</h5>
-        <button type="button" class="btn btn-success" id="btn-taken" routerLink="/Home">Tomar orden</button>
-    </div>
+    <button type="button" class="btn btn-success mb-3" id="btn-taken" (click)="tomarOrden()">Tomar orden</button>
 </div>
 
 <app-footer></app-footer>
