@@ -2,14 +2,14 @@
 <div id="historialContainer" class="container pb-3">
     <h5 class="text2">Mis órdenes entregadas</h5>
     <hr>
-    <div class="row" id="historial" *ngFor="let item of historialOrdenes">
-        <h3 class="text-initial mt-2">{{item.fecha}}</h3>
+    <div class="row" id="historial" *ngFor="let historial of historialOrdenes">
+        <h3 class="text-initial mt-2">{{historial.fecha | date:'dd-MM-yyyy'}}</h3>
         <hr> 
         <div class="col-8 mt-2">
-            <h6>Destino: {{item.destino}}</h6>
-            <h6>Comprador: {{item.nombreComprador}}</h6>
-            <h6>Total de Factura: {{item.totalFactura}}</h6>
-            <h6>Comision otorgada: {{item.comision}}</h6>
+            <h6>Destino: {{historial.ubicacionOrden.direccion}}</h6>
+            <h6>Comprador: {{historial.cliente.nombre}} {{historial.cliente.apellido}}</h6>
+            <h6>Total de Factura: {{historial.factura.total | currency:'Lps. '}}</h6>
+            <h6>Comision otorgada: {{historial.factura.comisionMotorista | currency:'Lps. '}}</h6>
         </div>
         <a data-bs-toggle="modal" data-bs-target="#modalInvoice" class="col-4 mb-2">
             <img class="d-block img-historial" src="../../assets/img/documento.png" alt="">

@@ -1,44 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-historial-ordenes',
   templateUrl: './historial-ordenes.component.html'
 })
 export class HistorialOrdenesComponent implements OnInit {
-  historialOrdenes:any= [
-    {
-      destino:'Col. La Travesia',
-      nombreComprador:'Melany Avila',
-      totalFactura:'L. 990.00',
-      comision:'Lps. 100',
-      fecha: '08/09/2021'
-    },
-    {
-      destino:'Col. San Miguel',
-      nombreComprador:'Oscar Avila',
-      totalFactura:'L. 990.00',
-      comision:'Lps. 100',
-      fecha: '05/07/2021'
-    },
-    {
-      destino:'Villanueva',
-      nombreComprador:'Carla Medina',
-      totalFactura:'L. 990.00',
-      comision:'Lps. 100',
-      fecha: '22/06/2021'
-    },
-    {
-      destino:'Col. Tiloarque',
-      nombreComprador:'Carmen Medina',
-      totalFactura:'L. 990.00',
-      comision:'Lps. 90',
-      fecha: '22/06/2021'
-    },
-  ];
+  historialOrdenes:any = [];
+  idUsuario: any  = this.cookiesService.get('nanyUsuarioId');
 
-  constructor() { }
+  constructor(
+    private usuariosService: UsuariosService,
+    private cookiesService: CookieService
+  ) { }
 
   ngOnInit(): void {
+    this.usuariosService.obtenerOrdenesUsuario(this.idUsuario).subscribe(
+      result=>{
+        for (let i = 0; i < result.ordenes.length; i++) {
+          if (result.ordenes[i].tipoEstado.idEstado == "4") {
+            this.historialOrdenes.push(result.ordenes[i]);
+            console.log('Historial', this.historialOrdenes);
+          } 
+        }
+      },
+      error=>{
+        console.log(error);
+      }
+    )
   }
 
 }
