@@ -1,30 +1,33 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-    <div class="inprogress">
-        <h6>Destino: Col. La Travesia</h6>
-        <h5>Comprador: Melany Ávila</h5>
+    <h2 class="text2">¡Hola {{nombreUsuario}}!</h2>
+    <div class="inprogress" *ngIf="ordenProgreso != ''">
+        <h6>Destino: {{ordenProgreso.ubicacionOrden.direccion}}</h6>
+        <h5>Comprador: {{ordenProgreso.cliente.nombre}} {{ordenProgreso.cliente.apellido}}</h5>
         <button type="button" class="btn btn-progress1">En camino</button>
-        <button type="button" class="btn btn-progress2">En origen</button>
-        <button type="button" class="btn btn-progress3">En destino</button>
-        <button type="button" class="btn btn-progress4">Entregada</button>
+        <button type="button" class="btn btn-progress2" (click)="enOrigen()">En origen</button>
+        <button type="button" class="btn btn-progress3" (click)="enDestino()">En destino</button>
+        <button type="button" class="btn btn-progress4" (click)="entregada()">Entregada</button>
     </div>
     <h5 class="text2">Ordenes disponibles</h5>
-    <div class="available" routerLink="/Detalle-orden" *ngFor="let item of ordenesDisponibles">
-        <img src="../../assets/img/{{item.imgOrden}}" alt="">
-        <h5>Destino: {{item.destino}}</h5>
-        <h6>Comprador: {{item.nombreComprador}}</h6>
-        <h6>Cantidad: {{item.cantidad}}</h6>
-        <h4>Hora de compra: {{item.horaCompra}}</h4>
+    <h4 *ngIf="ordenesDisponibles==''" class="text4">No hay ordenes disponibles en este momento</h4>
+    <div class="available" *ngFor="let orden of ordenesDisponibles" [routerLink]="['/Detalle-orden', orden._id]">
+        <img src="../../assets/img/las-compras-en-linea.png" alt="imagen">
+        <h5>Destino: {{orden.ubicacionOrden.direccion}}</h5>
+        <h6>Comprador: {{orden.cliente.nombre}} {{orden.cliente.apellido}}</h6>
+        <h6>Total a pagar: {{orden.factura.total | currency:'Lps. '}}</h6>
+        <h4>Fecha de compra: {{orden.fecha | date:'dd-MM-yyyy'}}</h4>
     </div>
     <h5 class="text2">Ordenes tomadas</h5>
     <h5 class="text3">No han sido entregadas</h5>
-    <div class="taken" *ngFor="let item of ordenesTomadas">
-        <img src="../../assets/img/{{item.imgOrden}}" alt="">
-        <h5>Destino: {{item.destino}}</h5>
-        <h6>Comprador: {{item.nombreComprador}}</h6>
-        <h6>Cantidad: {{item.cantidad}}</h6>
-        <h4>Hora de compra: {{item.horaCompra}}</h4>
+    <h4 *ngIf="ordenesTomadas==''" class="text4">No hay ordenes tomadas en este momento</h4>
+    <div class="taken" *ngFor="let orden of ordenesTomadas">
+        <img src="../../assets/img/compras.png" alt="imagen">
+        <h5>Destino: {{orden.ubicacionOrden.direccion}}</h5>
+        <h6>Comprador: {{orden.cliente.nombre}} {{orden.cliente.apellido}}</h6>
+        <h6>Cantidad: {{orden.factura.total | currency:'Lps. '}}</h6>
+        <h4>Fecha de compra: {{orden.fecha | date:'dd-MM-yyyy'}}</h4>
     </div>
 </div>
 
