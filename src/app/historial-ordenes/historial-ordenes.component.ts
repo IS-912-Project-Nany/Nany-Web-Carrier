@@ -8,6 +8,8 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class HistorialOrdenesComponent implements OnInit {
   historialOrdenes:any = [];
+  ordenDetalle: any = '';
+  factura: any = '';
   idUsuario: any  = this.cookiesService.get('nanyUsuarioId');
 
   constructor(
@@ -20,6 +22,11 @@ export class HistorialOrdenesComponent implements OnInit {
       result=>{
         for (let i = 0; i < result.ordenes.length; i++) {
           if (result.ordenes[i].tipoEstado.idEstado == "4") {
+            result.ordenes.sort((a, b) => {
+              a = new Date(a.fecha);
+              b = new Date(b.fecha);
+              return a > b ? -1 : a < b ? 1 : 0;
+            });
             this.historialOrdenes.push(result.ordenes[i]);
             console.log('Historial', this.historialOrdenes);
           } 
@@ -29,6 +36,11 @@ export class HistorialOrdenesComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  verDetalleOrden(index){
+    this.ordenDetalle = this.historialOrdenes[index].detalleProductos;
+    this.factura = this.historialOrdenes[index].factura;
   }
 
 }

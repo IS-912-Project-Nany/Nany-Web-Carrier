@@ -2,28 +2,30 @@
 <div id="historialContainer" class="container pb-3">
     <h5 class="text2">Mis órdenes entregadas</h5>
     <hr>
-    <div class="row" id="historial" *ngFor="let historial of historialOrdenes">
-        <h3 class="text-initial mt-2">{{historial.fecha | date:'dd-MM-yyyy'}}</h3>
-        <hr> 
-        <div class="col-8 mt-2">
-            <h6>Destino: {{historial.ubicacionOrden.direccion}}</h6>
-            <h6>Comprador: {{historial.cliente.nombre}} {{historial.cliente.apellido}}</h6>
-            <h6>Total de Factura: {{historial.factura.total | currency:'Lps. '}}</h6>
-            <h6>Comision otorgada: {{historial.factura.comisionMotorista | currency:'Lps. '}}</h6>
+    <div id="historial">
+        <div class="row" *ngFor="let historial of historialOrdenes; let i = index">
+            <h3 class="text-initial mt-2">{{historial.fecha | date:'dd-MM-yyyy'}}</h3>
+            <hr> 
+            <div class="col-8 mt-2">
+                <h6>Destino: {{historial.ubicacionOrden.direccion}}</h6>
+                <h6>Comprador: {{historial.cliente.nombre}} {{historial.cliente.apellido}}</h6>
+                <h6>Total de Factura: {{historial.factura.total | currency:'Lps. '}}</h6>
+                <h6>Comision otorgada: {{historial.factura.comisionMotorista | currency:'Lps. '}}</h6>
+            </div>
+            <a data-bs-toggle="modal" data-bs-target="#modalInvoice" class="col-4 mb-2" (click)="verDetalleOrden(i)">
+                <img class="d-block img-historial" src="../../assets/img/documento.png" alt="">
+            </a>
+            <hr>
         </div>
-        <a data-bs-toggle="modal" data-bs-target="#modalInvoice" class="col-4 mb-2">
-            <img class="d-block img-historial" src="../../assets/img/documento.png" alt="">
-        </a>
-        <hr>
     </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="modalInvoice" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" *ngIf="ordenDetalle != ''">
             <div class="modal-header">
-                <img src="../assets/img/Logo-Carrier.png" id="logo">
+                <img src="../../assets/img/Logo-Carrier.png" id="logo">
             </div>
             <div class="modal-body container">
                 <h3 class="text-center">Factura</h3>
@@ -31,49 +33,49 @@
                     <thead>
                         <tr>
                             <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Envío</th>
                             <th scope="col">ISV</th>
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="invoice-description">Wendy´s Pack =1 HAM, 1 REF 1.25L, 1 PAPAS MED</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                        </tr>
-                        <tr>
-                            <td class="invoice-description">Wendy´s Pack =1 HAM, 1 REF 1.25L, 1 PAPAS MED</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                        </tr>
-                        <tr>
-                            <td class="invoice-description">Wendy´s Pack =1 HAM, 1 REF 1.25L, 1 PAPAS MED</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                        </tr>
-                        <tr>
-                            <td class="invoice-description">Wendy´s Pack =1 HAM, 1 REF 1.25L, 1 PAPAS MED</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
-                            <td class="invoice-cost">L.100.00</td>
+                        <tr *ngFor="let item of ordenDetalle">
+                            <td class="invoice-description">{{item.producto.nombre}}</td>
+                            <td class="invoice-cost">X{{item.cantidad}}</td>
+                            <td class="invoice-cost">L.{{item.producto.precio | number: '1.2-2'}}</td>
+                            <td class="invoice-cost">L.{{item.producto.isv | number: '1.2-2'}}</td>
+                            <td class="invoice-cost">L.{{((item.producto.precio + item.producto.isv) * item.cantidad) | number : '1.2-2'}}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Total:</th>
+                            <th class="pb-0">Subtotal:</th>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="invoice-cost">L.100.00</td>
+                            <td class="invoice-cost pb-0">L.{{factura.subtotal | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <th class="py-0">Costo Envio:</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="invoice-cost py-0">L.{{factura.costoEnvio | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr class="pb-2">
+                            <th class="py-0 total-invoice">Total:</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="total-invoice-number py-0">L.{{factura.total | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr>
+                            <th class="py-0">Comisión otorgada:</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="total-invoice-number py-0">L.{{factura.comisionMotorista | number: '1.2-2'}}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -85,4 +87,4 @@
     </div>
 </div>
 
-<app-footer></app-footer>
+<app-footer  *ngIf="historialOrdenes.length != 0"></app-footer>
