@@ -716,8 +716,7 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false,
-    ROOT_API: ''
+    production: false
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -1435,9 +1434,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineInjecto
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_BASE_URL", function() { return API_BASE_URL; });
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../environments/environment.prod */ "cxbk");
-
-const API_BASE_URL = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_0__["environment"].ROOT_API; /*'http://localhost:8888';*/
+const API_BASE_URL = 'https://nany-rest-api.herokuapp.com'; /*'http://localhost:8888';*/
 
 
 /***/ }),
@@ -1495,24 +1492,6 @@ MapComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
     } }, styles: [".map-frame[_ngcontent-%COMP%] {\n  width: auto;\n  margin-top: 10px;\n}\n\n#map[_ngcontent-%COMP%] {\n  width: auto;\n  margin-top: 10px;\n  height: 500px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXG1hcC5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQTtFQUNFLFdBQUE7RUFDQSxnQkFBQTtBQUZGOztBQUlBO0VBQ0UsV0FBQTtFQUNBLGdCQUFBO0VBQ0EsYUFBQTtBQURGIiwiZmlsZSI6Im1hcC5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIiRsZy1icmVhY2twb2ludDogOTYwcHhcclxuXHJcbkBtZWRpYSAobWF4LXdpZHRoOiAkbGctYnJlYWNrcG9pbnQpXHJcbi5tYXAtZnJhbWVcclxuICB3aWR0aDogYXV0b1xyXG4gIG1hcmdpbi10b3A6IDEwcHhcclxuXHJcbiNtYXBcclxuICB3aWR0aDogYXV0b1xyXG4gIG1hcmdpbi10b3A6IDEwcHhcclxuICBoZWlnaHQ6IDUwMHB4Il19 */"] });
-
-
-/***/ }),
-
-/***/ "cxbk":
-/*!**********************************************!*\
-  !*** ./src/environments/environment.prod.ts ***!
-  \**********************************************/
-/*! exports provided: environment */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-const environment = {
-    production: true,
-    ROOT_API: 'https://nany-rest-api.herokuapp.com'
-};
 
 
 /***/ }),
