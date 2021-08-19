@@ -22,4 +22,7 @@ export class UsuariosService {
     return this.httpClient.get(`${API_BASE_URL}/usuarios/${idUsuario}/ordenes`);
   }
 
+  actualizarEstadoOrden(idUsuario: String, idOrden: String, tipoEstado: any): Observable<any> {
+    return this.httpClient.put(`${API_BASE_URL}/usuarios/${idUsuario}/ordenes/${idOrden}`, tipoEstado);
+  }
 }

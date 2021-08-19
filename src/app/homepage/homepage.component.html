@@ -5,10 +5,11 @@
     <div class="inprogress" *ngIf="ordenProgreso != ''">
         <h6>Destino: {{ordenProgreso.ubicacionOrden.direccion}}</h6>
         <h5>Comprador: {{ordenProgreso.cliente.nombre}} {{ordenProgreso.cliente.apellido}}</h5>
-        <button type="button" class="btn btn-progress1">En camino</button>
-        <button type="button" class="btn btn-progress2" (click)="enOrigen()">En origen</button>
-        <button type="button" class="btn btn-progress3" (click)="enDestino()">En destino</button>
-        <button type="button" class="btn btn-progress4" (click)="entregada()">Entregada</button>
+        <h5 style="color: #8E03CF;">Estado de orden: {{estadoOrden}}</h5>
+        <button type="button" class="btn btn-progress1" [disabled]="estadoOrden == 'En camino' || estadoOrden == 'En origen' || estadoOrden == 'En destino'">En camino</button>
+        <button type="button" class="btn btn-progress2" (click)="enOrigen()" [disabled]="estadoOrden == 'En destino' || estadoOrden == 'En origen'">En origen</button>
+        <button type="button" class="btn btn-progress3" (click)="enDestino()" [disabled]="estadoOrden == 'En camino' || estadoOrden == 'En destino'">En destino</button>
+        <button type="button" class="btn btn-progress4" (click)="entregada()" [disabled]="estadoOrden == 'En camino' || estadoOrden == 'En origen'">Entregada</button>
     </div>
     <h5 class="text2">Ordenes disponibles</h5>
     <h4 *ngIf="ordenesDisponibles==''" class="text4">No hay ordenes disponibles en este momento</h4>

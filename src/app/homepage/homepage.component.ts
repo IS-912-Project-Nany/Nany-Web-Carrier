@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { OrdenesService } from '../services/ordenes.service';
+import { UsuariosService } from '../services/usuarios.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,13 +15,15 @@ export class HomepageComponent implements OnInit {
   nombreUsuario: String = '';
   idUsuario: String = '';
   ordenProgreso: any = '';
+  estadoOrden: any = '';
   ordenesEntregadas: any = [];
   indiceOrdenProgreso: Number;
 
   constructor(
     private ordenesService: OrdenesService,
     private _route:Router,
-    private cookiesService: CookieService
+    private cookiesService: CookieService,
+    private usuariosService: UsuariosService
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +51,7 @@ export class HomepageComponent implements OnInit {
               
               if (this.idUsuario == result[i].motorista._id) {
                 this.ordenProgreso = result[i];
+                this.estadoOrden = this.ordenProgreso.tipoEstado.nombreEstado;
                 this.indiceOrdenProgreso = index;
                 console.log(this.ordenProgreso);
               } 
@@ -67,14 +71,16 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "En origen"
     };
 
-    this.ordenesService.actualizarOrden(this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
+        this.estadoOrden = this.ordenProgreso.tipoEstado.nombreEstado;
       },
       error=>{
         console.log(error);
       }
     )
+
   }
 
   enDestino(){
@@ -83,9 +89,10 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "En destino"
     };
 
-    this.ordenesService.actualizarOrden(this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
+        this.estadoOrden = this.ordenProgreso.tipoEstado.nombreEstado;
       },
       error=>{
         console.log(error);
@@ -99,7 +106,7 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "Entregada"
     };
 
-    this.ordenesService.actualizarOrden(this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
         Swal.fire({
