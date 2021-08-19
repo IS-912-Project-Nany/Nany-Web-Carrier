@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdenesService } from '../services/ordenes.service';
 import { CookieService } from 'ngx-cookie-service';
 import { UsuariosService } from '../services/usuarios.service';
 import Swal from 'sweetalert2';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-detalle-orden',
   templateUrl: './detalle-orden.component.html'
 })
 export class DetalleOrdenComponent implements OnInit {
+  @ViewChild ('ubicacion') mapaComponent: MapComponent;
+
   region: Boolean = true;
   idOrden: any = '';
   detalleOrden:any = '';
   ordenesUsuario: any = [];
+  latitud: any = '';
+  longitud : any = '';
   idUsuario: any  = this.cookiesService.get('nanyUsuarioId');
 
   constructor(
@@ -34,6 +39,7 @@ export class DetalleOrdenComponent implements OnInit {
     this.ordenesService.obtenerOrden(this.idOrden).subscribe(
       result=>{
         this.detalleOrden = result;
+        this.mapaComponent.initMap(this.detalleOrden.ubicacionOrden.latitud, this.detalleOrden.ubicacionOrden.longitud);
         console.log(this.detalleOrden);
       },
       error=>{
@@ -89,5 +95,11 @@ export class DetalleOrdenComponent implements OnInit {
         }
       )
     }
+  }
+
+  latlong(latlong){
+    console.log(latlong);
+    this.latitud = latlong.lat;
+    this.longitud = latlong.lng;
   }
 }

@@ -17,7 +17,8 @@ import { HistorialOrdenesComponent } from './historial-ordenes/historial-ordenes
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapComponent } from './map/map.component'; 
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RequisitosComponent,
     HomepageComponent,
     DetalleOrdenComponent,
-    HistorialOrdenesComponent
+    HistorialOrdenesComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

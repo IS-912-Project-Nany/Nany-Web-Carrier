@@ -16,6 +16,8 @@
             <h5>Empresa: {{detalle.producto.empresa}}</h5>
         </div>
     </div>
+    <h5 id="txt-map">Ubicación de la orden</h5>
+    <app-map #ubicacion></app-map>
     <button type="button" class="btn btn-success mb-3" id="btn-taken" (click)="tomarOrden()">Tomar orden</button>
 </div>
 
