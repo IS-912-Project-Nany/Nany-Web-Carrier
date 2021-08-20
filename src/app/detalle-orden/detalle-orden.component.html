@@ -18,8 +18,10 @@
     </div>
     <h5 id="txt-map">Ubicación de la orden</h5>
     <app-map #ubicacion></app-map>
-    <button type="button" class="btn btn-success mb-3" id="btn-taken" (click)="tomarOrden()">Tomar orden</button>
+    <button type="button" class="btn btn-success mb-3" id="btn-taken" (click)="tomarOrden()" 
+    [ngClass]="{'d-block': estadoOrden == '0', 'd-none': estadoOrden != '0'}">Tomar orden</button>
 </div>
 
 <app-footer></app-footer>
+<ngx-spinner *ngIf="isLoading" bdColor = "rgba(255,255,255,0.8)" size = "large" color = "#1A7BDB" type = "square-jelly-box" [fullScreen] = "true"></ngx-spinner>
 

@@ -23,7 +23,7 @@
     <h5 class="text2">Ordenes tomadas</h5>
     <h5 class="text3">No han sido entregadas</h5>
     <h4 *ngIf="ordenesTomadas==''" class="text4">No hay ordenes tomadas en este momento</h4>
-    <div class="taken" *ngFor="let orden of ordenesTomadas">
+    <div class="taken" *ngFor="let orden of ordenesTomadas" [routerLink]="['/Detalle-orden', orden._id]">
         <img src="../../assets/img/compras.png" alt="imagen">
         <h5>Destino: {{orden.ubicacionOrden.direccion}}</h5>
         <h6>Comprador: {{orden.cliente.nombre}} {{orden.cliente.apellido}}</h6>

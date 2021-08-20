@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
+import { NgxSpinnerService } from "ngx-spinner";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,16 +21,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
   responseLoggin: any = '';
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
     private cookiesService: CookieService,
-    private _route:Router
+    private _route:Router,
+    private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.spinner.show();
+  }
 
   login(){
+    this.isLoading = true;
     console.log('El usuario a autenticar:', this.formLogin);
     this.authService.login(this.formLogin.value).subscribe(
       result=>{
@@ -56,6 +62,7 @@ export class LoginComponent implements OnInit {
           this.responseLoggin = result;
           this.correo.setValue('');
         }
+        this.isLoading = false;
         console.log(result.message);
 
         var estado = result.usuario.tipoUsuario.motoristaInfo.estadoAdmision;

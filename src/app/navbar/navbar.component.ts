@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUserCircle, faSignOutAlt, faClipboardList} from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,12 @@ export class NavbarComponent implements OnInit {
   faClipboardList = faClipboardList;
   islogged: boolean = false;
   usuario: any = '';
+  isLoading: boolean = false;
 
   constructor(
     private cookiesService: CookieService,
-    private _route: Router
+    private _route: Router,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -32,11 +35,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
+    this.isLoading = true;
     this.cookiesService.delete('nanyUsuarioId');
     this.cookiesService.delete('nanyUsuarioNombre');
     this.cookiesService.delete('nanyUsuarioApellido');
     this.islogged = false;
     this.usuario = '';
+    this.isLoading = false;
     this._route.navigate(['/']);
   }
 

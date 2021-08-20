@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UsuariosService } from '../services/usuarios.service';
 import Swal from 'sweetalert2';
 import { MapComponent } from '../map/map.component';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-detalle-orden',
@@ -19,6 +20,8 @@ export class DetalleOrdenComponent implements OnInit {
   ordenesUsuario: any = [];
   latitud: any = '';
   longitud : any = '';
+  isLoading: boolean = false;
+  estadoOrden: any = '';
   idUsuario: any  = this.cookiesService.get('nanyUsuarioId');
 
   constructor(
@@ -26,21 +29,26 @@ export class DetalleOrdenComponent implements OnInit {
     private ruta: ActivatedRoute,
     private ordenesService: OrdenesService,
     private cookiesService: CookieService,
-    private usuariosService: UsuariosService
+    private usuariosService: UsuariosService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
+    this.isLoading = true;
+    this.scrollToTop();
     this.ruta.params.subscribe(
       params => {
         this.idOrden = params._id;
       }
     )
-    
     this.ordenesService.obtenerOrden(this.idOrden).subscribe(
       result=>{
         this.detalleOrden = result;
         this.mapaComponent.initMap(this.detalleOrden.ubicacionOrden.latitud, this.detalleOrden.ubicacionOrden.longitud);
         console.log(this.detalleOrden);
+        this.estadoOrden = this.detalleOrden.tipoEstado.idEstado;
+        this.isLoading = false;
       },
       error=>{
         console.log(error);
@@ -57,6 +65,10 @@ export class DetalleOrdenComponent implements OnInit {
       }
     )
     
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   tomarOrden(){
