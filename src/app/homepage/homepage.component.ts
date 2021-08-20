@@ -71,7 +71,7 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "En origen"
     };
 
-    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.ordenProgreso.cliente._id, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
         this.estadoOrden = this.ordenProgreso.tipoEstado.nombreEstado;
@@ -89,7 +89,7 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "En destino"
     };
 
-    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.ordenProgreso.cliente._id, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
         this.estadoOrden = this.ordenProgreso.tipoEstado.nombreEstado;
@@ -106,7 +106,7 @@ export class HomepageComponent implements OnInit {
       nombreEstado: "Entregada"
     };
 
-    this.usuariosService.actualizarEstadoOrden(this.idUsuario, this.ordenProgreso._id, this.ordenProgreso).subscribe(
+    this.usuariosService.actualizarEstadoOrden(this.ordenProgreso.cliente._id, this.ordenProgreso._id, this.ordenProgreso).subscribe(
       result=>{
         console.log(result);
         Swal.fire({

@@ -100,6 +100,11 @@ export class DetalleOrdenComponent implements OnInit {
       this.ordenesService.actualizarOrden(this.idOrden, this.detalleOrden).subscribe(
         result=>{
           console.log(result);
+          Swal.fire({
+            icon: 'success',
+            title: 'Excelente!',
+            text: 'Orden tomada con éxito'
+          });
           this._route.navigate(['/Home']);
         },
         error=>{

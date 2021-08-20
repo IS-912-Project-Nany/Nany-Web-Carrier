@@ -27,12 +27,12 @@ export class HistorialOrdenesComponent implements OnInit {
       result=>{
         for (let i = 0; i < result.ordenes.length; i++) {
           if (result.ordenes[i].tipoEstado.idEstado == "4") {
-            result.ordenes.sort((a, b) => {
+            this.historialOrdenes.push(result.ordenes[i]);
+            this.historialOrdenes.sort((a, b) => {
               a = new Date(a.fecha);
               b = new Date(b.fecha);
               return a > b ? -1 : a < b ? 1 : 0;
             });
-            this.historialOrdenes.push(result.ordenes[i]);
             console.log('Historial', this.historialOrdenes);
             this.isLoading = false;
           } 
