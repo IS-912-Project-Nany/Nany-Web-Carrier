@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1629445414459,
+  "timestamp": 1629485371641,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,12 +13,13 @@
       "urls": [
         "/assets/img/favicon-delivery.ico",
         "/index.html",
-        "/main.6bae0dae8f52c0822395.js",
+        "/main.js",
         "/manifest.webmanifest",
-        "/polyfills.94daefd414b8355106ab.js",
-        "/runtime.7b63b9fd40098a2e8207.js",
-        "/scripts.d20fa30793355a6f3ff7.js",
-        "/styles.709aae7027bda5945fd8.css"
+        "/polyfills.js",
+        "/runtime.js",
+        "/scripts.js",
+        "/styles.css",
+        "/vendor.js"
       ],
       "patterns": []
     },
@@ -30,8 +31,8 @@
         "ignoreVary": true
       },
       "urls": [
-        "/Raleway-Bold.d1a96e2aa6257c864d4d.ttf",
-        "/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+        "/Raleway-Bold.ttf",
+        "/Roboto-Regular.ttf",
         "/assets/fonts/Raleway/Raleway-Bold.ttf",
         "/assets/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf",
         "/assets/fonts/Raleway/Raleway-VariableFont_wght.ttf",
@@ -59,17 +60,17 @@
         "/assets/img/reloj.png",
         "/assets/img/telefono.png",
         "/assets/img/twitter.png",
-        "/marker-icon-2x.680f69f3c2e6b90c1812.png",
-        "/marker-icon.2b3e1faf89f94a483539.png",
-        "/marker-shadow.a0c6cc1401c107b501ef.png"
+        "/marker-icon-2x.png",
+        "/marker-icon.png",
+        "/marker-shadow.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/Raleway-Bold.d1a96e2aa6257c864d4d.ttf": "4ab381ecd77519206ff3eaf8ad7653cb825b4496",
-    "/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf": "84d102488738b0ebbc7a5087973effbd54c95bd5",
+    "/Raleway-Bold.ttf": "4ab381ecd77519206ff3eaf8ad7653cb825b4496",
+    "/Roboto-Regular.ttf": "84d102488738b0ebbc7a5087973effbd54c95bd5",
     "/assets/fonts/Raleway/Raleway-Bold.ttf": "4ab381ecd77519206ff3eaf8ad7653cb825b4496",
     "/assets/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf": "b9d3a28e6dcef24b22a60ea7053660c847835300",
     "/assets/fonts/Raleway/Raleway-VariableFont_wght.ttf": "efa4e04b26524e3de1546c97c03a4cfc0c80bb76",
@@ -98,16 +99,17 @@
     "/assets/img/reloj.png": "c054df540539babe0a0b4b42a8c33ac7bfd2876a",
     "/assets/img/telefono.png": "59653894e861a0bbcb558ec5cb64dac5e3ec617e",
     "/assets/img/twitter.png": "ca22a24bff527f364fa6e44d85048456579c6bb5",
-    "/index.html": "1197fbddc8ae7f95abf293079e8d235f6eb3c175",
-    "/main.6bae0dae8f52c0822395.js": "5dad2035e148f08fbe35e3b638d2367a7ef603df",
+    "/index.html": "ee83fa008e914836e34dc6fecc24472b45e281ec",
+    "/main.js": "3cd32d357ef53714938c4375689879040646e910",
     "/manifest.webmanifest": "e91de4babbeac7325d08ffa5547c5062f8ef799c",
-    "/marker-icon-2x.680f69f3c2e6b90c1812.png": "cf3a536596b1f58e0ac805404183c8e6d6bdacb5",
-    "/marker-icon.2b3e1faf89f94a483539.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
-    "/marker-shadow.a0c6cc1401c107b501ef.png": "7b6a8df63930381e96604e705168d0527d6b82bc",
-    "/polyfills.94daefd414b8355106ab.js": "cfe7b0b53e96bff9ba384b4d497c08475a617d62",
-    "/runtime.7b63b9fd40098a2e8207.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/scripts.d20fa30793355a6f3ff7.js": "be2ee8a15459b540e7ff90af366f9b61f01bccc1",
-    "/styles.709aae7027bda5945fd8.css": "25118a7f0c8c402017fd89b8fc3f86cedfc1cf14"
+    "/marker-icon-2x.png": "cf3a536596b1f58e0ac805404183c8e6d6bdacb5",
+    "/marker-icon.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
+    "/marker-shadow.png": "7b6a8df63930381e96604e705168d0527d6b82bc",
+    "/polyfills.js": "a04bea1bce37d2f67cce59823e590d613320dd6c",
+    "/runtime.js": "154c277c076cfc8ee335df5d9349395c6bf58db5",
+    "/scripts.js": "3844014ec9f0c25e0b4412b5f0618eee11311819",
+    "/styles.css": "6b4c40577ae00069ff915e245932a955cd69075a",
+    "/vendor.js": "3078a18f191405984411eab4aff6b656c807c72b"
   },
   "navigationUrls": [
     {
