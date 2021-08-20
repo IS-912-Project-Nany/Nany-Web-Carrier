@@ -45,4 +45,11 @@ export class NavbarComponent implements OnInit {
     this._route.navigate(['/']);
   }
 
+  verInicio(){
+    if (this.islogged == true) {
+      this._route.navigate(['/Home']);
+    } else {
+      this._route.navigate(['/']);
+    }
+  }
 }

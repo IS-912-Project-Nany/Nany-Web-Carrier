@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <img src="../assets/img/Logo-Carrier.png" id="img-logo" routerLink="/Home">
+      <img src="../assets/img/Logo-Carrier.png" id="img-logo" (click)="verInicio()">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="usuario == ''" id="noLoggedDropdown">
           <li class="nav-item">
-            <img src="../assets/img/Logo2-Carrier.png" id="logoNavbar"  alt="...">
+            <img src="../assets/img/Logo2-Carrier.png" id="logoNavbar"  routerLink="/">
             <hr>
           </li>
           <li class="nav-item">

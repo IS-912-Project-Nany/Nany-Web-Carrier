@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1629485371641,
+  "timestamp": 1629498852193,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -100,7 +100,7 @@
     "/assets/img/telefono.png": "59653894e861a0bbcb558ec5cb64dac5e3ec617e",
     "/assets/img/twitter.png": "ca22a24bff527f364fa6e44d85048456579c6bb5",
     "/index.html": "ee83fa008e914836e34dc6fecc24472b45e281ec",
-    "/main.js": "3cd32d357ef53714938c4375689879040646e910",
+    "/main.js": "b56dc13464db75c2ef866b1e5092cd1e5f3c2e03",
     "/manifest.webmanifest": "e91de4babbeac7325d08ffa5547c5062f8ef799c",
     "/marker-icon-2x.png": "cf3a536596b1f58e0ac805404183c8e6d6bdacb5",
     "/marker-icon.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
