@@ -115,28 +115,13 @@ export class RegisterComponent implements OnInit {
           this.responseRegistro = result;
           this.correo.setValue('');
         } else {
-          const dateNow = new Date();
-          dateNow.setMinutes(dateNow.getMinutes() + 60);
-          this.cookiesService.set('nanyUsuarioId', result.usuario._id, dateNow);
-          this.cookiesService.set(
-            'nanyUsuarioNombre',
-            result.usuario.nombre,
-            dateNow
-          );
-          this.cookiesService.set(
-            'nanyUsuarioApellido',
-            result.usuario.apellido,
-            dateNow
-          );
-
+          console.log(result);
+          Swal.fire({
+            icon: 'success',
+            title: 'Tu registro ha sido exitoso!',
+            text: 'Te avisaremos al correo cuando tu solicitud sea aceptada',
+          });
         }
-        console.log(result);
-        Swal.fire({
-          icon: 'success',
-          title: 'Tu registro ha sido exitoso!',
-          text: 'Te avisaremos al correo cuando tu solicitud sea aceptada',
-        });
-
       },
       error=>{
         console.log(error);
