@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { UsuariosService } from '../services/usuarios.service';
 import { CiudadesService } from '../services/ciudades.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private usuariosService: UsuariosService,
     private ciudadesService: CiudadesService,
-    private cookiesService: CookieService
+    private _route:Router
   ) {}
 
   ngOnInit(): void {
@@ -121,6 +121,7 @@ export class RegisterComponent implements OnInit {
             title: 'Tu registro ha sido exitoso!',
             text: 'Te avisaremos al correo cuando tu solicitud sea aceptada',
           });
+          this._route.navigate(['/']);
         }
       },
       error=>{

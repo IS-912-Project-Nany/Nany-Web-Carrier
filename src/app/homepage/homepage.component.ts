@@ -27,6 +27,7 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.scrollToTop();
     if (this.cookiesService.check('nanyUsuarioNombre')) {
       this.nombreUsuario = this.cookiesService.get('nanyUsuarioNombre');
       this.idUsuario = this.cookiesService.get('nanyUsuarioId');
@@ -64,6 +65,10 @@ export class HomepageComponent implements OnInit {
       )
     } 
   } 
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
   enOrigen(){
     this.ordenProgreso.tipoEstado = {

@@ -80,6 +80,7 @@ export class DetalleOrdenComponent implements OnInit {
     }
 
     if (entrega != 0) {
+      this.scrollToTop();
       Swal.fire({
         icon: 'error',
         title: 'Tienes ordenes por entregar!',
