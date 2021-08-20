@@ -18,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MapComponent } from './map/map.component'; 
+import { MapComponent } from './map/map.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment'; 
 
 @NgModule({
   declarations: [
@@ -42,7 +44,12 @@ import { MapComponent } from './map/map.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule, 
-    BrowserAnimationsModule
+    BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the app is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
